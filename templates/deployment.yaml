@@ -1,9 +1,10 @@
 ---
 
-apiVersion: v1
 {% if cluster == 'kubernetes' %}
+apiVersion: {{ deployment_api_version }}
 kind: Deployment
 {% else %}
+apiVersion: {{ deploymentconfig_api_version }}
 kind: DeploymentConfig
 {% endif %}
 metadata:
