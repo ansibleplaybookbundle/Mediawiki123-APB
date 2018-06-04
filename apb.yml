@@ -49,6 +49,7 @@ plans:
         title: Mediawiki Admin User Password
         required: True
         display_type: password
+        description: "Caution: If this matches the Mediawiki Admin User value you will be unable to login"
       - name: mediawiki_volume_size
         type: enum
         default: '1Gi'

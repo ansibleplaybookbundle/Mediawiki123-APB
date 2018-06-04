@@ -18,11 +18,6 @@
   include_vars: ansible_26.yml
   when: ansible_version.full is version('2.6', '>=')
 
-- name: Validate Admin User and Password
-  fail:
-    msg: "Mediawiki Admin User and Password cannot be the same value!"
-  when: mediawiki_admin_user == mediawiki_admin_pass
-
 - name: "Set mediawiki objects state={{ state }}"
   k8s_raw:
     state: '{{ state }}'
