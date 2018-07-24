@@ -5,7 +5,7 @@
 %endif
 
 Name: 		mediawiki-apb-role
-Version:	1.3.0
+Version:	1.3.1
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Ansible Playbook for Mediawiki APB
 
@@ -34,6 +34,11 @@ mv defaults tasks templates vars %{buildroot}/opt/ansible/roles/mediawiki-apb
 /opt/ansible/roles
 
 %changelog
+* Tue Jul 24 2018 David Zager <david.j.zager@gmail.com> 1.3.1-1
+- Bump version for 3.11 (david.j.zager@gmail.com)
+- Update APB for ansible 26 (#38) (dzager@redhat.com)
+- Update apb version to be semver compatible (#37) (dzager@redhat.com)
+
 * Mon Jun 04 2018 David Zager <david.j.zager@gmail.com> 1.2.8-1
 - fix deprovision when username and password match (#35) (jmontleo@redhat.com)
 
