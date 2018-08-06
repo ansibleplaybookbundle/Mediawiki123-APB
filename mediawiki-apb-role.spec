@@ -5,7 +5,7 @@
 %endif
 
 Name: 		mediawiki-apb-role
-Version:	1.3.1
+Version:	1.3.2
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Ansible Playbook for Mediawiki APB
 
@@ -34,6 +34,9 @@ mv defaults tasks templates vars %{buildroot}/opt/ansible/roles/mediawiki-apb
 /opt/ansible/roles
 
 %changelog
+* Mon Aug 06 2018 David Zager <david.j.zager@gmail.com> 1.3.2-1
+- Bug 1610987: Update default registry for app image (david.j.zager@gmail.com)
+
 * Tue Jul 24 2018 David Zager <david.j.zager@gmail.com> 1.3.1-1
 - Bump version for 3.11 (david.j.zager@gmail.com)
 - Update APB for ansible 26 (#38) (dzager@redhat.com)
