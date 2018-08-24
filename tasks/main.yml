@@ -5,10 +5,6 @@
     description: "0%: Starting"
   when: in_cluster
 
-- name: 'Set facts'
-  set_fact:
-    cluster: '{{ "openshift" if "openshift" in lookup("k8s", cluster_info="version") else "kubernetes" }}'
-
 - name: Validate Admin User and Password
   fail:
     msg: "Mediawiki Admin User and Password cannot be the same value!"
@@ -25,7 +21,7 @@
     - name: service.yaml.j2
     - name: pvc.yaml.j2
     - name: route.yaml.j2
-      apply: "{{ True if cluster == 'openshift' else False }}"
+      apply: "{{ True if 'route.openshift.io' in lookup('k8s', cluster_info='api_groups') else False }}"
     - name: deployment.yaml.j2
 
 - name: "Update last operation"

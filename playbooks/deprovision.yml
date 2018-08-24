@@ -1,7 +1,7 @@
 - connection: local
   gather_facts: false
   hosts: localhost
-  name: "Deprovision mediawiki-apb from {{ cluster }}"
+  name: "Deprovision mediawiki-apb"
   roles:
   - ansibleplaybookbundle.asb-modules
   - mediawiki-apb
