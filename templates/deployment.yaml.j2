@@ -1,11 +1,11 @@
 ---
 
-{% if cluster == 'kubernetes' %}
-apiVersion: apps/v1
-kind: Deployment
-{% else %}
+{% if 'apps.openshift.io' in lookup('k8s', cluster_info='api_groups') %}
 apiVersion: apps.openshift.io/v1
 kind: DeploymentConfig
+{% else %}
+apiVersion: apps/v1
+kind: Deployment
 {% endif %}
 metadata:
   name: {{ app_name }}
@@ -15,15 +15,15 @@ metadata:
     service: {{ app_name }}
 spec:
   replicas: 1
-{% if cluster == 'kubernetes' %}
+{% if 'apps.openshift.io' in lookup('k8s', cluster_info='api_groups') %}
+  selector:
+    app: {{ app_name }}
+    service: {{ app_name }}
+{% else %}
   selector:
     matchLabels:
       app: {{ app_name }}
       service: {{ app_name }}
-{% else %}
-  selector:
-    app: {{ app_name }}
-    service: {{ app_name }}
 {% endif %}
   strategy:
     type: Recreate
@@ -47,12 +47,7 @@ spec:
             value: {{ mediawiki_admin_user }}
           - name: MEDIAWIKI_ADMIN_PASS
             value: {{ mediawiki_admin_pass }}
-{% if cluster == 'kubernetes' %}
-          - name: MEDIAWIKI_SITE_SERVER
-            valueFrom:
-              fieldRef:
-                fieldPath: status.podIP
-{% else %}
+{% if 'apps.openshift.io' in lookup('k8s', cluster_info='api_groups') %}
           - name: MEDIAWIKI_SITE_SERVER
             value: {{
               lookup(
@@ -63,6 +58,11 @@ spec:
                 resource_name=app_name
               ) | json_query("spec.host")
             }}
+{% else %}
+          - name: MEDIAWIKI_SITE_SERVER
+            valueFrom:
+              fieldRef:
+                fieldPath: status.podIP
 {% endif %}
         ports:
           - containerPort: 8080
