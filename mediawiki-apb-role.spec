@@ -5,7 +5,7 @@
 %endif
 
 Name: 		mediawiki-apb-role
-Version:	1.3.2
+Version:	1.3.3
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Ansible Playbook for Mediawiki APB
 
@@ -34,6 +34,10 @@ mv defaults tasks templates vars %{buildroot}/opt/ansible/roles/mediawiki-apb
 /opt/ansible/roles
 
 %changelog
+* Tue Sep 04 2018 Dylan Murray <dymurray@redhat.com> 1.3.3-1
+- Bug 1625161 - Typecast namespace to string (#42) (dymurray@redhat.com)
+- Check for capabilities instead of openshift (jmontleo@redhat.com)
+
 * Mon Aug 06 2018 David Zager <david.j.zager@gmail.com> 1.3.2-1
 - Bug 1610987: Update default registry for app image (david.j.zager@gmail.com)
 
