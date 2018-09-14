@@ -4,8 +4,8 @@
 %define build_timestamp %{nil}
 %endif
 
-Name: 		mediawiki-apb-role
-Version:	1.3.3
+Name:		mediawiki-apb-role
+Version:	1.4.0
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Ansible Playbook for Mediawiki APB
 
