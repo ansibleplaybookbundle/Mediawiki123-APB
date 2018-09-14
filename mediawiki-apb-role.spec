@@ -5,7 +5,7 @@
 %endif
 
 Name: 		mediawiki-apb-role
-Version:	1.3.3
+Version:	1.3.4
 Release:	1%{build_timestamp}%{?dist}
 Summary:	Ansible Playbook for Mediawiki APB
 
@@ -34,6 +34,9 @@ mv defaults tasks templates vars %{buildroot}/opt/ansible/roles/mediawiki-apb
 /opt/ansible/roles
 
 %changelog
+* Fri Sep 14 2018 jesus m. rodriguez <jmrodri@gmail.com> 1.3.4-1
+- Set apb version in to 1.0 to be compatible with old brokers (jmontleo@redhat.com)
+
 * Tue Sep 04 2018 Dylan Murray <dymurray@redhat.com> 1.3.3-1
 - Bug 1625161 - Typecast namespace to string (#42) (dymurray@redhat.com)
 - Check for capabilities instead of openshift (jmontleo@redhat.com)
